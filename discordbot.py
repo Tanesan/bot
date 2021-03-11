@@ -3,7 +3,9 @@ from random import choice
 
 import discord
 
-from settings import CHANNEL_ID, EMOJI, QUESTION_TXT
+from settings import CHANNEL_ID
+from settings import EMOJI
+from settings import QUESTION_TXT
 
 TOKEN = os.environ.get("TOKEN")
 
