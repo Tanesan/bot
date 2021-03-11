@@ -51,7 +51,7 @@ async def on_message(message):
         return
     if client.user in message.mentions:
         await reply_nop(message)
-    if is_question(message.content):
+    elif is_question(message.content):
         await reply_nop(message)
 
 
