@@ -5,7 +5,7 @@ import discord
 
 from settings import CHANNEL_ID, EMOJI, QUESTION_TXT
 
-TOKEN = os.environ.get('TOKEN')
+TOKEN = os.environ.get("TOKEN")
 
 client = discord.Client()
 
@@ -15,7 +15,7 @@ async def reply_nop(message):
     返信とリアクションスタンプをランダムでをつける
     """
     emoji = discord.utils.get(message.guild.emojis, name=choice(EMOJI))
-    reply = f'こんにちは。\n他の受講生に相談してみましょう！'
+    reply = f"こんにちは。\n他の受講生に相談してみましょう！"
     await message.channel.send(reply)
     await message.add_reaction(emoji)
 
@@ -36,7 +36,7 @@ async def on_ready():
     """
     botのサーバログイン時に実行
     """
-    print('ログインしました')
+    print("ログインしました")
 
 
 @client.event
