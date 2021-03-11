@@ -1,26 +1,58 @@
-# インストールした discord.py を読み込む
-import discord
 import os
-# 自分のBotのアクセストークンに置き換えてください
+from random import choice
+
+import discord
+
+from settings import CHANNEL_ID, EMOJI, QUESTION_TXT
+
 TOKEN = os.environ.get('TOKEN')
 
-# 接続に必要なオブジェクトを生成
 client = discord.Client()
 
-# 起動時に動作する処理
+
+async def reply_nop(message):
+    """
+    返信とリアクションスタンプをランダムでをつける
+    """
+    emoji = discord.utils.get(message.guild.emojis, name=choice(EMOJI))
+    reply = f'こんにちは。\n他の受講生に相談してみましょう！'
+    await message.channel.send(reply)
+    await message.add_reaction(emoji)
+
+
+def is_question(text):
+    """
+    疑問文か判定
+    :param text:    判定する文章
+    :return:        bool
+    """
+    for question_txt in QUESTION_TXT:
+        if text.find(question_txt) >= 0:
+            return True
+
+
 @client.event
 async def on_ready():
-    # 起動したらターミナルにログイン通知が表示される
+    """
+    botのサーバログイン時に実行
+    """
     print('ログインしました')
-# メッセージ受信時に動作する処理
+
+
 @client.event
 async def on_message(message):
-    # メッセージ送信者がBotだった場合は無視する
+    """
+    メッセージが送信されると起動
+    :param message: 送信されたメッセージ
+    """
     if message.author.bot:
         return
-    # 「/neko」と発言したら「にゃーん」が返る処理
-    if (message.content.find('?') >= 0 or message.content.find('？') >= 0 or message.content.find('ですか') >= 0 or message.content.find('nop') >= 0):
-        await message.channel.send('こんにちは。\n他の受講生に相談してみましょう！')
+    if message.channel.id != CHANNEL_ID:
+        return
+    if client.user in message.mentions:
+        await reply_nop(message)
+    if is_question(message.content):
+        await reply_nop(message)
 
-# Botの起動とDiscordサーバーへの接続
+
 client.run(TOKEN)
