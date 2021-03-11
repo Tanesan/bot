@@ -19,7 +19,7 @@ async def on_message(message):
     if message.author.bot:
         return
     # 「/neko」と発言したら「にゃーん」が返る処理
-    if (message.content.find('?') >= 0):
+    if (message.content.find('?') >= 0 or message.content.find('？') >= 0 or message.content.find('ですか') >= 0 or message.content.find('nop') >= 0):
         await message.channel.send('こんにちは。\n他の受講生に相談してみましょう！')
 
 # Botの起動とDiscordサーバーへの接続
