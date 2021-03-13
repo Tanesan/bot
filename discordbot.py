@@ -4,7 +4,7 @@ import pya3rt
 
 import discord
 
-from settings import CHANNEL_ID, EMOJI, QUESTION_TXT
+from settings import CHANNEL_ID, EMOJI, QUESTION_TXT, questions42, ignorelists
 
 TOKEN = os.environ.get('TOKEN')
 
@@ -12,10 +12,6 @@ Apikey = os.environ.get('SECRET_TOKEN')
 clients = pya3rt.TalkClient(Apikey)
 
 client = discord.Client()
-
-questions42 = ["合格", "スコア", "42", "不合格", "受"]
-
-ignorelists = ["どうしたらいいですか", "受講生", "恥ずかしい"]
 
 async def reply_nop(message):
     """
