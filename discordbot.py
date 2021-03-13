@@ -38,7 +38,7 @@ async def nomal_reply(message):
     emoji = discord.utils.get(message.guild.emojis, name=choice(EMOJI))
     reply_message = clients.talk(message)
     reply = reply_message['results'][0]['reply']
-    if replay == 'ごめんなさい。私にはよくわかりません。'
+    if replay.find('ごめんなさい。') > 0:
         reply = f'どうでも良いことに関するお問い合わせは、別の42staffの方にお問い合わせください。'
     await message.channel.send(reply)
     await message.add_reaction(emoji)
@@ -86,7 +86,11 @@ async def on_message(message):
         await reply_nop(message)
     elif is_question(message.content) == 3:
         await angry_nop(message)
-    elif (random.random(1,10) > 4)
+    elif message.content.find('はい'):
+        return
+    elif message.content.find('いいえ'):
+        return
+    else (random.random(1,10) > 4):
         await nomal_reply(message)
 
 
