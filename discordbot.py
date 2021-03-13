@@ -13,6 +13,7 @@ clients = pya3rt.TalkClient(Apikey)
 
 client = discord.Client()
 
+
 async def reply_nop(message):
     """
     返信とリアクションスタンプをランダムでをつける
@@ -22,6 +23,7 @@ async def reply_nop(message):
     await message.channel.send(reply)
     await message.add_reaction(emoji)
 
+
 async def angry_nop(message):
     """
     返信とリアクションスタンプをランダムでをつける
@@ -30,6 +32,7 @@ async def angry_nop(message):
     reply = f'こんにちは。\n自分で考えてみましょう！\nわからない場合は不合格にします！'
     await message.channel.send(reply)
     await message.add_reaction(emoji)
+
 
 async def nomal_reply(message):
     """
@@ -55,6 +58,7 @@ def is_question(text):
             return 2
         elif text.find(ignorelists) >= 0:
             return 3
+
 
 @client.event
 async def on_ready():
