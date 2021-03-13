@@ -4,7 +4,11 @@ from random import choice
 import discord
 import pya3rt
 
-from settings import CHANNEL_ID, EMOJI, IGNORELISTS, QUESTION_TXT, QUESTIONS42
+from settings import CHANNEL_ID
+from settings import EMOJI
+from settings import IGNORELISTS
+from settings import QUESTION_TXT
+from settings import QUESTIONS42
 
 TOKEN = os.environ.get("TOKEN")
 
