@@ -4,7 +4,7 @@ import pya3rt
 
 import discord
 
-from settings import CHANNEL_ID, EMOJI, QUESTION_TXT, questions42, ignorelists
+from settings import CHANNEL_ID, EMOJI, QUESTION_TXT, QUESTIONS42, IGNORELISTS
 
 TOKEN = os.environ.get('TOKEN')
 
@@ -51,9 +51,11 @@ def is_question(text):
     for question_txt in QUESTION_TXT:
         if text.find(question_txt) >= 0:
             return 1
-        elif text.find(questions42) >= 0:
+    for question_txt in QUESTIONS42:
+        if text.find(question_txt) >= 0:
             return 2
-        elif text.find(ignorelists) >= 0:
+    for question_txt in IGNORELISTS:
+        if text.find(question_txt) >= 0:
             return 3
 
 @client.event
