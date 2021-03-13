@@ -6,9 +6,9 @@ import discord
 
 from settings import CHANNEL_ID, EMOJI, QUESTION_TXT, questions42, ignorelists
 
-TOKEN = os.environ.get('TOKEN')
+TOKEN = os.environ.get("TOKEN")
 
-Apikey = os.environ.get('SECRET_TOKEN')
+Apikey = os.environ.get("SECRET_TOKEN")
 clients = pya3rt.TalkClient(Apikey)
 
 client = discord.Client()
@@ -19,7 +19,7 @@ async def reply_nop(message):
     返信とリアクションスタンプをランダムでをつける
     """
     emoji = discord.utils.get(message.guild.emojis, name=choice(EMOJI))
-    reply = f'こんにちは。\n他の受講生に相談してみましょう！'
+    reply = f"こんにちは。\n他の受講生に相談してみましょう！"
     await message.channel.send(reply)
     await message.add_reaction(emoji)
 
@@ -29,7 +29,7 @@ async def angry_nop(message):
     返信とリアクションスタンプをランダムでをつける
     """
     emoji = discord.utils.get(message.guild.emojis, name=choice(EMOJI))
-    reply = f'こんにちは。\n自分で考えてみましょう！\nわからない場合は不合格にします！'
+    reply = f"こんにちは。\n自分で考えてみましょう！\nわからない場合は不合格にします！"
     await message.channel.send(reply)
     await message.add_reaction(emoji)
 
@@ -40,7 +40,7 @@ async def nomal_reply(message):
     """
     emoji = discord.utils.get(message.guild.emojis, name=choice(EMOJI))
     reply_message = clients.talk(message)
-    reply = reply_message['results'][0]['reply']
+    reply = reply_message["results"][0]["reply"]
     await message.channel.send(reply)
     await message.add_reaction(emoji)
 
@@ -65,7 +65,7 @@ async def on_ready():
     """
     botのサーバログイン時に実行
     """
-    print('ログインしました')
+    print("ログインしました")
 
 
 @client.event
