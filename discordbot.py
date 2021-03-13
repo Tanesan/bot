@@ -1,10 +1,10 @@
 import os
 from random import choice
-import pya3rt
 
 import discord
+import pya3rt
 
-from settings import CHANNEL_ID, EMOJI, QUESTION_TXT, questions42, ignorelists
+from settings import CHANNEL_ID, EMOJI, QUESTION_TXT, ignorelists, questions42
 
 TOKEN = os.environ.get("TOKEN")
 
