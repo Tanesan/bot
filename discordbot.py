@@ -1,7 +1,7 @@
 import os
 from random import choice
 import pya3rt
-
+import random
 import discord
 
 from settings import CHANNEL_ID, EMOJI, QUESTION_TXT, QUESTIONS42, IGNORELISTS
@@ -38,6 +38,8 @@ async def nomal_reply(message):
     emoji = discord.utils.get(message.guild.emojis, name=choice(EMOJI))
     reply_message = clients.talk(message)
     reply = reply_message['results'][0]['reply']
+    if replay == 'ごめんなさい。私にはよくわかりません。'
+        reply = f'どうでも良いことに関するお問い合わせは、別の42staffの方にお問い合わせください。'
     await message.channel.send(reply)
     await message.add_reaction(emoji)
 
@@ -76,14 +78,16 @@ async def on_message(message):
         return
     if message.channel.id != CHANNEL_ID:
         return
-    if client.user in message.mentions:
-        await reply_nop(message)
-    elif is_question(message.content) == 1:
+#     if client.user in message.mentions:
+#         await reply_nop(message)
+    if is_question(message.content) == 1:
         await nomal_reply(message)
     elif is_question(message.content) == 2:
         await reply_nop(message)
     elif is_question(message.content) == 3:
         await angry_nop(message)
+    elif (random.random(1,10) > 4)
+        await nomal_reply(message)
 
 
 client.run(TOKEN)
