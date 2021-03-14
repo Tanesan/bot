@@ -47,7 +47,7 @@ async def nomal_reply(message):
     emoji = discord.utils.get(message.guild.emojis, name=choice(EMOJI))
     reply_message = clients.talk(message)
     reply = reply_message['results'][0]['reply']
-    if replay.find('ごめんなさい。') > 0:
+    if reply.find('ごめんなさい。') > 0:
         reply = f'どうでも良いことに関するお問い合わせは、別の42staffの方にお問い合わせください。'
     await message.channel.send(reply)
     await message.add_reaction(emoji)
