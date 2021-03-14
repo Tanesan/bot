@@ -100,7 +100,7 @@ async def on_message(message):
         return
     elif message.content.find('いいえ'):
         return
-    else random.randint(1,10) > 4:
+    elif random.randint(1,10) > 4:
         await nomal_reply(message)
 
 
