@@ -1,35 +1,44 @@
 import os
 from random import choice
+
 import pya3rt
 import random
 import discord
+import pya3rt
 
-from settings import CHANNEL_ID, EMOJI, QUESTION_TXT, QUESTIONS42, IGNORELISTS
+from settings import CHANNEL_ID
+from settings import EMOJI
+from settings import IGNORELISTS
+from settings import QUESTION_TXT
+from settings import QUESTIONS42
 
-TOKEN = os.environ.get('TOKEN')
+TOKEN = os.environ.get("TOKEN")
 
-Apikey = os.environ.get('SECRET_TOKEN')
+Apikey = os.environ.get("SECRET_TOKEN")
 clients = pya3rt.TalkClient(Apikey)
 
 client = discord.Client()
+
 
 async def reply_nop(message):
     """
     返信とリアクションスタンプをランダムでをつける
     """
     emoji = discord.utils.get(message.guild.emojis, name=choice(EMOJI))
-    reply = f'こんにちは。\n他の受講生に相談してみましょう！'
+    reply = f"こんにちは。\n他の受講生に相談してみましょう！"
     await message.channel.send(reply)
     await message.add_reaction(emoji)
+
 
 async def angry_nop(message):
     """
     返信とリアクションスタンプをランダムでをつける
     """
     emoji = discord.utils.get(message.guild.emojis, name=choice(EMOJI))
-    reply = f'こんにちは。\n自分で考えてみましょう！\nわからない場合は不合格にします！'
+    reply = f"こんにちは。\n自分で考えてみましょう！\nわからない場合は不合格にします！"
     await message.channel.send(reply)
     await message.add_reaction(emoji)
+
 
 async def nomal_reply(message):
     """
@@ -60,12 +69,13 @@ def is_question(text):
         if text.find(question_txt) >= 0:
             return 3
 
+
 @client.event
 async def on_ready():
     """
     botのサーバログイン時に実行
     """
-    print('ログインしました')
+    print("ログインしました")
 
 
 @client.event
